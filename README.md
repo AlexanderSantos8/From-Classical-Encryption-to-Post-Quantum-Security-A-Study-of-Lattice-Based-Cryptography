@@ -2,7 +2,7 @@
 
 An academic and computational study tracing the evolution of cryptography—from classical substitution ciphers to modern post-quantum cryptographic standards—with a focus on the mathematical foundations, implementations, and security simulations of **Lattice-Based Cryptography**.
 
-Developed as part of **Math-435** by **Alexander Santos**.
+Developed by **Alexander Santos**.
 
 ---
 
