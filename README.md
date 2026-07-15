@@ -49,7 +49,7 @@ As quantum computers advance, classical public-key cryptography (such as RSA and
 
 A lattice $\Lambda$ is a discrete additive subgroup of Euclidean space $\mathbb{R}^m$. Given a matrix $B \in \mathbb{R}^{m \times n}$ with linearly independent column vectors $b_1, b_2, \dots, b_n \in \mathbb{R}^m$, the lattice generated is:
 
-$$\Lambda(B) = \left\{ Bz \ \middle\vert{}\ z \in \mathbb{Z}^n \right\} = \left\{ \sum_{i=1}^n z_i b_i \ \middle\vert{}\ z_i \in \mathbb{Z} \right\}$$
+$$\Lambda(B) = \left\{ Bz \ \middle|\ z \in \mathbb{Z}^n \right\} = \left\{ \sum_{i=1}^n z_i b_i \ \middle|\ z_i \in \mathbb{Z} \right\}$$
 
 For this project's concrete two-dimensional model, we utilize the basis vectors:
 
