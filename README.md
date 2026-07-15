@@ -1,102 +1,517 @@
 # From Classical Encryption to Post-Quantum Security: A Study of Lattice-Based Cryptography
 
-[cite_start]An academic and computational study tracing the evolution of cryptography—from classical substitution ciphers to post-quantum standards—with a focus on the mathematical foundations, implementations, and security simulations of **Lattice-Based Cryptography**[cite: 248, 261].
+An academic and computational study tracing the evolution of cryptography—from classical substitution ciphers to modern post-quantum cryptographic standards—with a focus on the mathematical foundations, implementations, and security simulations of **Lattice-Based Cryptography**.
 
-[cite_start]Developed as part of the **Math-435** course by **Alexander Santos**[cite: 246, 247].
+Developed as part of **Math-435** by **Alexander Santos**.
 
 ---
 
-## 📖 Table of Contents
+# 📖 Table of Contents
+
 1. [Project Overview](#-project-overview)
 2. [Research Objectives](#-research-objectives)
 3. [Core Mathematical Foundations](#-core-mathematical-foundations)
-    * [Lattice Definitions & Properties](#lattice-definitions--properties)
-    * [Hard Geometric Problems](#hard-geometric-problems)
-    * [Learning With Errors (LWE)](#learning-with-errors-lwe)
-4. [The Quantum Threat & Lattice Resilience](#-the-quantum-threat--lattice-resilience)
+4. [Quantum Threat and Lattice Security](#-quantum-threat-and-lattice-security)
 5. [Code Implementations](#-code-implementations)
-    * [1. Classical Caesar Cipher](#1-classical-caesar-cipher)
-    * [2. 2D Lattice Generation & Visualization](#2-2d-lattice-generation--visualization)
-    * [3. Noisy LWE Point Generation](#3-noisy-lwe-point-generation)
-    * [4. LWE Secret-Key Recovery Attack Simulation](#4-lwe-secret-key-recovery-attack-simulation)
-6. [Results & Visual Analysis](#-results--visual-analysis)
-7. [Standardization & Real-World Context](#-standardization--real-world-context)
-8. [Setup & Execution](#-setup--execution)
+6. [Results and Visual Analysis](#-results-and-visual-analysis)
+7. [Standardization and Real-World Context](#-standardization-and-real-world-context)
+8. [Setup and Execution](#-setup-and-execution)
 9. [Academic References](#-academic-references)
 
 ---
 
-## 🚀 Project Overview
+# 🚀 Project Overview
 
-[cite_start]This project bridges the historical and mathematical gap between traditional cryptographic algorithms and modern post-quantum paradigms[cite: 261, 262]. 
+This project explores the historical and mathematical transition from classical cryptography to modern **post-quantum cryptography**.
 
-[cite_start]As quantum computers advance, classical public-key cryptography (such as RSA and ECC) faces complete vulnerability from polynomial-time quantum algorithms like **Shor's Algorithm**[cite: 435, 439]. [cite_start]This research evaluates **Lattice-Based Cryptography**—specifically the **Learning With Errors (LWE)** framework [cite: 337, 417][cite_start]—which offers robust, worst-case hardness guarantees that remain secure against both classical and quantum adversaries[cite: 421, 452].
+Traditional public-key systems such as **RSA** and **Elliptic Curve Cryptography (ECC)** rely on mathematical problems that become vulnerable to quantum algorithms such as **Shor's Algorithm**.
 
----
+This research focuses on **Lattice-Based Cryptography**, specifically the **Learning With Errors (LWE)** framework, which provides security based on computational problems believed to remain difficult for both classical and quantum computers.
 
-## 🎯 Research Objectives
+The project combines:
 
-* [cite_start]**Examine Historical Systems:** Investigate early transposition and substitution methods (Spartan Scytale, Caesar Cipher) through to electromechanical automation (Enigma)[cite: 269, 271, 283].
-* [cite_start]**Model Lattice Geometries:** Implement algorithms to construct discrete geometric structures in multi-dimensional vector spaces[cite: 361, 381].
-* [cite_start]**Deconstruct Geometric Hardness:** Explore worst-case computational hardness of the Shortest Vector Problem (SVP) and Closest Vector Problem (CVP)[cite: 409, 413].
-* [cite_start]**Simulate Cryptanalysis:** Execute a simulated random-guessing attack against LWE to empirically observe the role of noise in cryptographic security[cite: 503, 504].
-
----
-
-## 📐 Core Mathematical Foundations
-
-### Lattice Definitions & Properties
-[cite_start]A lattice $\Lambda$ is a discrete additive subgroup of Euclidean space $\mathbb{R}^m$[cite: 365]. [cite_start]Given a matrix $B \in \mathbb{R}^{m \times n}$ with linearly independent column vectors $b_1, b_2, \dots, b_n \in \mathbb{R}^m$[cite: 369], the lattice generated is:
-
-[cite_start]$$\Lambda(B) = \left\{ Bz \;\middle\vert{}\; z \in \mathbb{Z}^n \right\} = \left\{ \sum_{i=1}^n z_i b_i \;\middle\vert{}\; z_i \in \mathbb{Z} \right\} \quad \text{[cite: 371]}$$
-
-[cite_start]For this project's concrete two-dimensional model, we utilize the basis vectors[cite: 375, 377]:
-$$b_1 = \begin{pmatrix} 2 \\ 1 \end{pmatrix}, \quad b_2 = \begin{pmatrix} 1 \\ 3 \end{pmatrix}$$
-
-[cite_start]Which produces a fundamental parallelotope with volume (or determinant)[cite: 387, 392]:
-$$\det(\Lambda) = \vert{}\det(B)\vert{} = \left\vert{} 2(3) - (1)(1) \right\vert{} [cite_start]= 5 \quad \text{[cite: 397]}$$
-
-### Hard Geometric Problems
-[cite_start]Lattice security is built on problems that scale exponentially in higher dimensions[cite: 413]:
-1. [cite_start]**Shortest Vector Problem (SVP):** Locate a non-zero vector $v \in \Lambda$ that minimizes the Euclidean norm[cite: 410]:
-   $$\lambda_1(\Lambda) = \min_{v \in \Lambda \setminus \{0\}} \Vert{}v\Vert{}$$
-2. [cite_start]**Closest Vector Problem (CVP):** Given a target vector $t \in \mathbb{R}^n \notin \Lambda$, locate $v \in \Lambda$ minimizing $\Vert{}t - v\Vert{}$[cite: 411, 412].
-
-### Learning With Errors (LWE)
-[cite_start]Proposed by Oded Regev, LWE introduces a small noise vector $e$ to transform simple linear systems into computationally hard problems[cite: 417, 418]:
-
-$$b = As + e \pmod q$$
+- Historical cryptographic systems
+- Mathematical lattice theory
+- Computational simulations
+- Cryptanalysis experiments
+- Post-quantum security concepts
 
 ---
 
-## 🛡️ The Quantum Threat & Lattice Resilience
+# 🎯 Research Objectives
 
-[cite_start]Shor's algorithm compromises RSA and ECC by exploiting the periodic structures of integer factorization and discrete logarithms using a Quantum Fourier Transform (QFT)[cite: 435, 439, 446]. 
+## Historical Cryptography
 
-Lattices are resilient against these quantum attacks because:
-* [cite_start]**Structural Absence:** Lattices rely on geometric complexity in high-dimensional vector spaces and lack the structured periodic features that QFT targets[cite: 447, 478].
-* [cite_start]**No Polynomial Quantum Speedups:** No known quantum algorithm can solve SVP or LWE in polynomial time; quantum systems yield only minor improvements over classical algorithms, maintaining exponential complexity[cite: 421, 450].
-* [cite_start]**Worst-Case to Average-Case Reductions:** The scheme guarantees that breaking an average cryptographic instance is mathematically as difficult as solving the most challenging instance of underlying lattice problems[cite: 452].
+Study the evolution of encryption systems:
+
+- Spartan Scytale transposition cipher
+- Caesar substitution cipher
+- Enigma machine
+- Modern public-key cryptography
+
+## Mathematical Modeling
+
+Implement and visualize:
+
+- Discrete lattice structures
+- Vector spaces
+- Basis transformations
+- Modular arithmetic systems
+
+## Computational Hardness
+
+Explore difficult lattice problems:
+
+- Shortest Vector Problem (SVP)
+- Closest Vector Problem (CVP)
+- Learning With Errors (LWE)
+
+## Cryptanalysis Simulation
+
+Simulate an attacker attempting to recover hidden information from noisy lattice-based encryption models.
 
 ---
 
-## 💻 Code Implementations
+# 📐 Core Mathematical Foundations
 
-[cite_start]The full implementation consists of Python 3 simulations transitioning from classical systems to post-quantum noise models[cite: 501, 503].
+## Lattice Definition
 
-### 1. Classical Caesar Cipher
-[cite_start]Demonstrates modular substitution $E(x) = (x + k) \pmod{26}$[cite: 508]:
+A lattice is a discrete additive subgroup of Euclidean space.
+
+Given a basis matrix:
+
+\[
+B \in R^{m \times n}
+\]
+
+with basis vectors:
+
+\[
+b_1,b_2,...,b_n
+\]
+
+the lattice generated by \(B\) is:
+
+\[
+\Lambda(B)=
+\{Bz \mid z \in Z^n\}
+\]
+
+or equivalently:
+
+\[
+\Lambda(B)=
+\left\{
+\sum_{i=1}^{n}z_ib_i
+\mid z_i\in Z
+\right\}
+\]
+
+---
+
+## 2D Lattice Example
+
+The project uses the basis vectors:
+
+\[
+b_1=
+\begin{pmatrix}
+2\\
+1
+\end{pmatrix}
+\]
+
+and
+
+\[
+b_2=
+\begin{pmatrix}
+1\\
+3
+\end{pmatrix}
+\]
+
+The determinant represents the fundamental volume:
+
+\[
+det(B)=|2(3)-1(1)|=5
+\]
+
+---
+
+# Hard Geometric Problems
+
+## Shortest Vector Problem (SVP)
+
+Find the shortest non-zero vector:
+
+\[
+\lambda_1(\Lambda)=
+\min_{v\in\Lambda\setminus\{0\}}
+||v||
+\]
+
+## Closest Vector Problem (CVP)
+
+Given a target point \(t\), find:
+
+\[
+v\in\Lambda
+\]
+
+that minimizes:
+
+\[
+||t-v||
+\]
+
+These problems become exponentially difficult as lattice dimensions increase.
+
+---
+
+# Learning With Errors (LWE)
+
+The LWE problem introduces controlled noise into a linear equation:
+
+\[
+b=As+e \pmod q
+\]
+
+where:
+
+- \(A\) = public matrix
+- \(s\) = secret key
+- \(e\) = small error vector
+- \(q\) = modulus
+
+The noise prevents attackers from easily recovering the secret.
+
+---
+
+# 🛡️ Quantum Threat and Lattice Security
+
+Quantum computers threaten traditional cryptography because:
+
+- Shor's Algorithm breaks RSA and ECC.
+- Quantum Fourier Transform attacks periodic mathematical structures.
+- Large quantum computers could efficiently solve factoring and discrete logarithm problems.
+
+Lattice cryptography remains secure because:
+
+### No Known Efficient Quantum Algorithm
+
+No known quantum algorithm solves LWE or SVP in polynomial time.
+
+### High-Dimensional Geometry
+
+Security comes from the complexity of searching and decoding structures in high-dimensional spaces.
+
+### Worst-Case to Average-Case Security
+
+Breaking random cryptographic instances is mathematically related to solving difficult lattice problems.
+
+---
+
+# 💻 Code Implementations
+
+The project contains Python simulations demonstrating the transition from classical encryption to post-quantum cryptography.
+
+Required libraries:
+
+```bash
+pip install numpy matplotlib
+```
+
+---
+
+# 1. Classical Caesar Cipher
+
+Demonstrates:
+
+\[
+E(x)=(x+k)\mod 26
+\]
 
 ```python
 def caesar_encrypt(text, shift):
     result = ""
+
     for char in text:
         if char.isalpha():
             base = ord('A') if char.isupper() else ord('a')
-            result += chr((ord(char) - base + shift) % 26 + base)
+            result += chr(
+                (ord(char)-base+shift)%26 + base
+            )
         else:
             result += char
+
     return result
+
 
 def caesar_decrypt(text, shift):
     return caesar_encrypt(text, -shift)
+
+
+message = "Post Quantum Security"
+
+encrypted = caesar_encrypt(message, 3)
+decrypted = caesar_decrypt(encrypted, 3)
+
+print(encrypted)
+print(decrypted)
+```
+
+---
+
+# 2. 2D Lattice Generation
+
+Creates a discrete lattice grid:
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+b1 = np.array([2,1])
+b2 = np.array([1,3])
+
+
+points=[]
+
+for i in range(-10,11):
+    for j in range(-10,11):
+
+        point=i*b1+j*b2
+        points.append(point)
+
+
+points=np.array(points)
+
+
+plt.scatter(
+    points[:,0],
+    points[:,1]
+)
+
+plt.title("2D Lattice Structure")
+plt.xlabel("x")
+plt.ylabel("y")
+
+plt.grid()
+plt.show()
+```
+
+---
+
+# 3. Noisy LWE Point Generation
+
+Simulates:
+
+\[
+b=As+e \mod q
+\]
+
+```python
+import numpy as np
+
+
+q = 97
+n = 2
+
+
+A=np.random.randint(
+    0,
+    q,
+    (n,n)
+)
+
+
+clean_points=[]
+noisy_points=[]
+
+
+for i in range(-15,15):
+
+    z=np.array([i,i])
+
+    clean=(A@z)%q
+
+    noise=np.random.randint(
+        -3,
+        4,
+        size=n
+    )
+
+    noisy=(clean+noise)%q
+
+
+    clean_points.append(clean)
+    noisy_points.append(noisy)
+
+
+clean_points=np.array(clean_points)
+noisy_points=np.array(noisy_points)
+```
+
+---
+
+# 4. LWE Secret-Key Recovery Attack Simulation
+
+Simulates an attacker attempting random secret-key recovery.
+
+```python
+errors=[]
+
+secret=np.random.randint(
+    0,
+    q,
+    n
+)
+
+
+b=(A@secret)%q
+
+
+for _ in range(500):
+
+    guess=np.random.randint(
+        0,
+        q,
+        n
+    )
+
+
+    predicted=(A@guess)%q
+
+
+    error=np.linalg.norm(
+        predicted-b
+    )
+
+
+    errors.append(error)
+```
+
+---
+
+# 📊 Results and Visual Analysis
+
+The simulations produce several important observations.
+
+## Figure 1: 2D Lattice Structure
+
+Shows the repeating geometric structure created from lattice basis vectors.
+
+## Figure 2: Lattice vs Noisy LWE Points
+
+Demonstrates how adding the error vector:
+
+\[
+e
+\]
+
+destroys visible mathematical patterns.
+
+## Figure 3: Attack Error Graph
+
+Shows 500 random attack attempts.
+
+The error values fluctuate without convergence, demonstrating the difficulty of recovering the secret.
+
+## Figure 4: Error Distribution
+
+Displays the small discrete noise values used in the LWE system.
+
+---
+
+# 🏛️ Standardization and Real-World Context
+
+The National Institute of Standards and Technology (NIST) has standardized lattice-based post-quantum algorithms:
+
+## ML-KEM
+
+Based on CRYSTALS-Kyber.
+
+Used for:
+
+- Key exchange
+- Secure communication
+
+## ML-DSA
+
+Based on CRYSTALS-Dilithium.
+
+Used for:
+
+- Digital signatures
+- Authentication
+
+Modern systems are expected to use hybrid approaches, combining classical cryptography with post-quantum algorithms during migration.
+
+---
+
+# 🛠️ Setup and Execution
+
+Clone the repository:
+
+```bash
+git clone <repository-url>
+```
+
+Install dependencies:
+
+```bash
+pip install numpy matplotlib
+```
+
+Run:
+
+```bash
+python main.py
+```
+
+The program will:
+
+- Demonstrate Caesar encryption
+- Generate lattice structures
+- Simulate LWE noise
+- Perform attack experiments
+- Generate visualizations
+
+---
+
+# 📚 Academic References
+
+Peikert, C. (2016).  
+**A Decade of Lattice Cryptography.**  
+Cryptology ePrint Archive.
+
+---
+
+Regev, O. (2005).  
+**On Lattices, Learning With Errors, Random Linear Codes, and Cryptography.**  
+Journal of the ACM.
+
+---
+
+Shor, P. (1994).  
+**Algorithms for Quantum Computation: Discrete Logarithms and Factoring.**  
+IEEE FOCS.
+
+---
+
+Grover, L. (1996).  
+**A Fast Quantum Mechanical Algorithm for Database Search.**  
+ACM STOC.
+
+---
+
+National Institute of Standards and Technology (2024).  
+
+**FIPS 203: Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM).**
+
+---
+
+National Institute of Standards and Technology (2024).
+
+**FIPS 204: Module-Lattice-Based Digital Signature Standard (ML-DSA).**
