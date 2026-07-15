@@ -46,23 +46,30 @@ As quantum computers advance, classical public-key cryptography (such as RSA and
 ## 📐 Core Mathematical Foundations
 
 ### Lattice Definitions & Properties
+
 A lattice $\Lambda$ is a discrete additive subgroup of Euclidean space $\mathbb{R}^m$. Given a matrix $B \in \mathbb{R}^{m \times n}$ with linearly independent column vectors $b_1, b_2, \dots, b_n \in \mathbb{R}^m$, the lattice generated is:
 
-$$\Lambda(B) = \left\{ Bz \;\middle\vert{}\; z \in \mathbb{Z}^n \right\} = \left\{ \sum_{i=1}^n z_i b_i \;\middle\vert{}\; z_i \in \mathbb{Z} \right\} \quad \text{}$$
+$$\Lambda(B) = \left\{ Bz \ \middle\vert{}\ z \in \mathbb{Z}^n \right\} = \left\{ \sum_{i=1}^n z_i b_i \ \middle\vert{}\ z_i \in \mathbb{Z} \right\}$$
 
 For this project's concrete two-dimensional model, we utilize the basis vectors:
+
 $$b_1 = \begin{pmatrix} 2 \\ 1 \end{pmatrix}, \quad b_2 = \begin{pmatrix} 1 \\ 3 \end{pmatrix}$$
 
 Which produces a fundamental parallelotope with volume (or determinant):
-$$\det(\Lambda) = \vert{}\det(B)\vert{} = \left\vert{} 2(3) - (1)(1) \right\vert{} = 5 \quad \text{}$$
+
+$$\det(\Lambda) = \vert{}\det(B)\vert{} = \vert{}2(3) - (1)(1)\vert{} = 5$$
 
 ### Hard Geometric Problems
+
 Lattice security is built on problems that scale exponentially in higher dimensions:
+
 1. **Shortest Vector Problem (SVP):** Locate a non-zero vector $v \in \Lambda$ that minimizes the Euclidean norm:
    $$\lambda_1(\Lambda) = \min_{v \in \Lambda \setminus \{0\}} \Vert{}v\Vert{}$$
+
 2. **Closest Vector Problem (CVP):** Given a target vector $t \in \mathbb{R}^n \notin \Lambda$, locate $v \in \Lambda$ minimizing $\Vert{}t - v\Vert{}$.
 
 ### Learning With Errors (LWE)
+
 Proposed by Oded Regev, LWE introduces a small noise vector $e$ to transform simple linear systems into computationally hard problems:
 
 $$b = As + e \pmod q$$
