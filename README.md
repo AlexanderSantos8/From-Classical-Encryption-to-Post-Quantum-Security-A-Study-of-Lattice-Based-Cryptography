@@ -6,7 +6,7 @@ Developed by **Alexander Santos**.
 
 ---
 
-# 📖 Table of Contents
+#  Table of Contents
 
 1. [Project Overview](#-project-overview)
 2. [Research Objectives](#-research-objectives)
@@ -20,7 +20,7 @@ Developed by **Alexander Santos**.
 
 ---
 
-# 🚀 Project Overview
+# Project Overview
 
 This project explores the historical and mathematical transition from classical cryptography to modern **post-quantum cryptography**.
 
