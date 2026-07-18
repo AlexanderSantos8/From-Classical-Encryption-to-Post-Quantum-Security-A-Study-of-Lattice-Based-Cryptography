@@ -38,7 +38,7 @@ The project combines:
 
 ---
 
-# 🎯 Research Objectives
+# Research Objectives
 
 ## Historical Cryptography
 
@@ -72,7 +72,7 @@ Simulate an attacker attempting to recover hidden information from noisy lattice
 
 ---
 
-# 📐 Core Mathematical Foundations
+# Core Mathematical Foundations
 
 ## Lattice Definition
 
@@ -188,7 +188,7 @@ The noise prevents attackers from easily recovering the secret.
 
 ---
 
-# 🛡️ Quantum Threat and Lattice Security
+# Quantum Threat and Lattice Security
 
 Quantum computers threaten traditional cryptography because:
 
@@ -212,7 +212,7 @@ Breaking random cryptographic instances is mathematically related to solving dif
 
 ---
 
-# 💻 Code Implementations
+# Code Implementations
 
 The project contains Python simulations demonstrating the transition from classical encryption to post-quantum cryptography.
 
@@ -394,7 +394,7 @@ for _ in range(500):
 
 ---
 
-# 📊 Results and Visual Analysis
+# Results and Visual Analysis
 
 The simulations produce several important observations.
 
@@ -424,7 +424,7 @@ Displays the small discrete noise values used in the LWE system.
 
 ---
 
-# 🏛️ Standardization and Real-World Context
+# Standardization and Real-World Context
 
 The National Institute of Standards and Technology (NIST) has standardized lattice-based post-quantum algorithms:
 
@@ -450,7 +450,7 @@ Modern systems are expected to use hybrid approaches, combining classical crypto
 
 ---
 
-# 🛠️ Setup and Execution
+# Setup and Execution
 
 Clone the repository:
 
@@ -480,7 +480,7 @@ The program will:
 
 ---
 
-# 📚 Academic References
+# Academic References
 
 Peikert, C. (2016).  
 **A Decade of Lattice Cryptography.**  
